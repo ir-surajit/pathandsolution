@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Path & Solution Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:#f4f6f9;color:#333;line-height:1.6}
+
+/* Navbar */
+nav{position:fixed;top:0;width:100%;background:#fff;box-shadow:0 4px 10px rgba(0,0,0,.05);display:flex;justify-content:space-between;align-items:center;padding:10px 20px;z-index:1000}
+nav h2{color:#2563eb}
+.full-name{display:none}
+.short-name{display:inline}
+
+.menu{list-style:none;display:none;flex-direction:column;position:absolute;top:60px;right:20px;background:#fff;width:200px;border-radius:15px;box-shadow:0 10px 20px rgba(0,0,0,.1);padding:15px}
+.menu li{margin:10px 0}
+.menu a{text-decoration:none;color:#333;font-weight:500}
+.menu a:hover{color:#2563eb}
+.menu.active{display:flex}
+
+.hamburger{font-size:26px;cursor:pointer;display:block}
+.spacer{height:70px}
+
+@media(min-width:768px){
+  .full-name{display:inline}
+  .short-name{display:none}
+  .hamburger{display:none}
+  .menu{display:flex !important;position:static;flex-direction:row;width:auto;box-shadow:none;padding:0}
+  .menu li{margin:0 10px}
+}
+
+/* Hero */
+header{background:linear-gradient(135deg,#2563eb,#4f46e5);color:#fff;padding:80px 20px;text-align:center}
+header h1{font-size:42px;margin-bottom:10px}
+header p{font-size:18px;margin-bottom:20px}
+.btn{display:inline-block;padding:12px 25px;border:none;border-radius:30px;background:#fff;color:#2563eb;font-weight:600;cursor:pointer;transition:.3s}
+.btn:hover{background:#e0e7ff}
+
+section{padding:60px 20px;max-width:1100px;margin:auto}
+.section-title{text-align:center;font-size:30px;margin-bottom:40px;font-weight:700}
+.grid{display:grid;gap:25px}
+@media(min-width:768px){.grid-3{grid-template-columns:repeat(3,1fr)}}
+.card{background:#fff;padding:25px;border-radius:20px;box-shadow:0 10px 25px rgba(0,0,0,.08);transition:.3s}
+.card:hover{transform:translateY(-8px)}
+.card h3{margin-bottom:10px;color:#2563eb}
+.course-btn{margin-top:15px;background:#2563eb;color:#fff}
+.course-btn:hover{background:#1e40af}
+
+.contact{background:#eef2ff;text-align:center;border-radius:20px;padding:40px}
+.contact a{color:#2563eb;text-decoration:none;font-weight:600}
+.contact a:hover{text-decoration:underline}
+
+.map-container{margin-top:20px;border-radius:20px;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.1)}
+.map-container iframe{width:100%;height:250px;border:0}
+
+footer{background:#111827;color:#fff;text-align:center;padding:20px;margin-top:40px}
+</style>
+</head>
+<body>
+
+<!-- HERO VIDEO BANNER -->
+<section class="hero">
+  <video autoplay muted loop playsinline class="hero-video">
+    <source src="resources/banner.mp4" type="video/mp4">
+  </video>
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <h1 class="hero-title">
+      <span class="desktop-title">Path & Solution Academy</span>
+      <span class="mobile-title">P & S Academy</span>
+    </h1>
+    <p class="hero-tagline">Draw Your Own Sky</p>
+    <div class="hero-buttons">
+      <a href="#courses" class="hero-btn">Explore Courses</a>
+      <a href="#contact" class="hero-btn secondary">Contact Us</a>
+    </div>
+  </div>
+</section>
+
+<style>
+.hero{
+  position:relative;
+  height:80vh;
+  min-height:500px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.hero-video{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.hero-overlay{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.55);
+}
+.hero-content{
+  position:relative;
+  text-align:center;
+  color:#ffffff;
+  animation:fadeUp 1.5s ease forwards;
+  opacity:0;
+}
+.hero-title{
+  font-size:48px;
+  font-weight:700;
+  margin-bottom:15px;
+}
+.hero-tagline{
+  font-size:22px;
+  margin-bottom:25px;
+  letter-spacing:1px;
+}
+.hero-buttons{
+  display:flex;
+  gap:15px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+.hero-btn{
+  padding:12px 25px;
+  border-radius:30px;
+  background:#2563eb;
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+  transition:0.3s;
+}
+.hero-btn:hover{
+  background:#1e40af;
+}
+.hero-btn.secondary{
+  background:transparent;
+  border:2px solid #fff;
+}
+.hero-btn.secondary:hover{
+  background:#ffffff;
+  color:#000;
+}
+
+.mobile-title{display:none;}
+
+@media(max-width:768px){
+  .hero-title{font-size:26px;}
+  .desktop-title{display:none;}
+  .mobile-title{display:inline;}
+}
+
+@keyframes fadeUp{
+  from{transform:translateY(40px); opacity:0;}
+  to{transform:translateY(0); opacity:1;}
+}
+</style>
+
+
+<nav>
+<h2>
+<span class="short-name">PSA</span>
+<span class="full-name">Path & Solution Academy</span>
+</h2>
+
+<div class="hamburger" onclick="toggleMenu()">☰</div>
+
+<ul class="menu" id="menu">
+<li><a href="#home" onclick="closeMenu()">Home</a></li>
+<li><a href="#about" onclick="closeMenu()">About</a></li>
+<li><a href="#courses" onclick="closeMenu()">Courses</a></li>
+<li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+</ul>
+</nav>
+
+<div class="spacer"></div>
+
+
+
+<section id="about">
+<h2 class="section-title">About Us</h2>
+<div class="grid grid-3">
+<div class="card">
+<h3>Career Counselling</h3>
+<p>Professional academic guidance to help students choose the right course and career path.</p>
+</div>
+<div class="card">
+<h3>Admission Assistance</h3>
+<p>Complete support in university selection, application process and documentation.</p>
+</div>
+<div class="card">
+<h3>End‑to‑End Support</h3>
+<p>From course selection to final admission confirmation — we guide you at every step.</p>
+</div>
+<div class="card">
+<h3>Modern Curriculum</h3>
+<p>Updated syllabus with practical learning and smart classroom techniques.</p>
+</div>
+<div class="card">
+<h3>Community Focus</h3>
+<p>Supportive and motivating learning environment for every student.</p>
+</div>
+</div>
+</section>
+
+<section id="courses">
+<h2 class="section-title">Our Courses</h2>
+
+<style>
+.course-category{margin-bottom:40px}
+.course-category h3{margin-bottom:20px;color:#2563eb;border-left:5px solid #2563eb;padding-left:10px}
+.course-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:15px}
+.course-card{background:#fff;padding:15px;border-radius:12px;text-align:center;font-weight:600;box-shadow:0 5px 15px rgba(0,0,0,0.08);cursor:pointer;transition:.3s}
+.course-card:hover{background:#eef2ff;color:#2563eb}
+.course-details{display:none;margin-top:10px;padding:15px;background:#f9fafb;border-radius:10px;font-size:14px;box-shadow:0 3px 10px rgba(0,0,0,0.05)}
+.course-details p{margin:4px 0}
+</style>
+
+<!-- Undergraduate Programs -->
+<div class="course-category">
+<h3>Undergraduate Programs</h3>
+<div class="course-grid">
+
+<!-- UG Course Template -->
+
+<div><div class="course-card" onclick="toggleDetails(this)">BBA</div><div class="course-details"><p><strong>Full Name:</strong> Bachelor of Business Administration</p><p><strong>Eligibility:</strong> 10+2</p><p><strong>Duration:</strong> 3 Years</p><p><strong>About:</strong> Business and management studies.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">BCA</div><div class="course-details"><p><strong>Full Name:</strong> Bachelor of Computer Applications</p><p><strong>Eligibility:</strong> 10+2 with Math</p><p><strong>Duration:</strong> 3 Years</p><p><strong>About:</strong> Computer programming & IT fundamentals.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">BBA (HM)</div><div class="course-details"><p><strong>Full Name:</strong> Bachelor of Business Administration in Hotel Management</p><p><strong>Eligibility:</strong> 10+2</p><p><strong>Duration:</strong> 3 Years</p><p><strong>About:</strong> Hospitality & hotel operations.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">BBA (TTM)</div><div class="course-details"><p><strong>Full Name:</strong> BBA in Travel & Tourism Management</p><p><strong>Eligibility:</strong> 10+2</p><p><strong>Duration:</strong> 3 Years</p><p><strong>About:</strong> Tourism & travel industry training.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">BMLT</div><div class="course-details"><p><strong>Full Name:</strong> Bachelor in Medical Laboratory Technology</p><p><strong>Eligibility:</strong> 10+2 (Science)</p><p><strong>Duration:</strong> 3 Years</p><p><strong>About:</strong> Clinical lab technology training.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">BBA (ATA)</div><div class="course-details"><p><strong>Full Name:</strong> BBA in Aviation, Travel & Airport Management</p><p><strong>Eligibility:</strong> 10+2</p><p><strong>Duration:</strong> 3 Years</p><p><strong>About:</strong> Aviation & airport operations.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">BDN</div><div class="course-details"><p><strong>Full Name:</strong> Bachelor in Dialysis Nursing</p><p><strong>Eligibility:</strong> 10+2 (Science)</p><p><strong>Duration:</strong> 3 Years</p><p><strong>About:</strong> Dialysis & patient care training.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">BAFM</div><div class="course-details"><p><strong>Full Name:</strong> Bachelor in Accounting & Financial Management</p><p><strong>Eligibility:</strong> 10+2</p><p><strong>Duration:</strong> 3 Years</p><p><strong>About:</strong> Finance & accounting fundamentals.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">BVFM</div><div class="course-details"><p><strong>Full Name:</strong> Bachelor in Vocation & Financial Management</p><p><strong>Eligibility:</strong> 10+2</p><p><strong>Duration:</strong> 3 Years</p><p><strong>About:</strong> Vocational finance studies.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">BMICCT</div><div class="course-details"><p><strong>Full Name:</strong> Bachelor in Media, Information & Communication Technology</p><p><strong>Eligibility:</strong> 10+2</p><p><strong>Duration:</strong> 3 Years</p><p><strong>About:</strong> Media & communication technology.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">B.SC (MEDIA)</div><div class="course-details"><p><strong>Eligibility:</strong> 10+2</p><p><strong>Duration:</strong> 3 Years</p><p><strong>About:</strong> Media science studies.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">B.SC (PSYCHO)</div><div class="course-details"><p><strong>Eligibility:</strong> 10+2</p><p><strong>Duration:</strong> 3 Years</p><p><strong>About:</strong> Psychology fundamentals.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">B.SC (HHA)</div><div class="course-details"><p><strong>Eligibility:</strong> 10+2</p><p><strong>Duration:</strong> 3 Years</p><p><strong>About:</strong> Hospital & health administration basics.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">B.PHARM</div><div class="course-details"><p><strong>Eligibility:</strong> 10+2 (Science)</p><p><strong>Duration:</strong> 4 Years</p><p><strong>About:</strong> Pharmaceutical sciences.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">BTTM</div><div class="course-details"><p><strong>Eligibility:</strong> 10+2</p><p><strong>Duration:</strong> 3 Years</p><p><strong>About:</strong> Travel & tourism management.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">LLB</div><div class="course-details"><p><strong>Eligibility:</strong> Graduation / 10+2 (Integrated)</p><p><strong>Duration:</strong> 3-5 Years</p><p><strong>About:</strong> Law education program.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">B.ED</div><div class="course-details"><p><strong>Eligibility:</strong> Graduation</p><p><strong>Duration:</strong> 2 Years</p><p><strong>About:</strong> Professional teacher training.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">D.EL.ED</div><div class="course-details"><p><strong>Eligibility:</strong> 10+2</p><p><strong>Duration:</strong> 2 Years</p><p><strong>About:</strong> Elementary education training.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">Hotel Management</div><div class="course-details"><p><strong>Eligibility:</strong> 10+2</p><p><strong>Duration:</strong> 3 Years</p><p><strong>About:</strong> Hospitality & hotel industry skills.</p></div></div>
+
+</div>
+</div>
+
+<!-- Postgraduate & Higher Studies -->
+<div class="course-category">
+<h3>Postgraduate & Higher Studies</h3>
+<div class="course-grid">
+
+<div><div class="course-card" onclick="toggleDetails(this)">M.SC (Clini Psycho)</div><div class="course-details"><p><strong>Eligibility:</strong> Graduation</p><p><strong>Duration:</strong> 2 Years</p><p><strong>About:</strong> Clinical psychology specialization.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">MOPTOM</div><div class="course-details"><p><strong>Eligibility:</strong> Graduation (Science)</p><p><strong>Duration:</strong> 2 Years</p><p><strong>About:</strong> Optometry studies.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">MTTM</div><div class="course-details"><p><strong>Eligibility:</strong> Graduation</p><p><strong>Duration:</strong> 2 Years</p><p><strong>About:</strong> Tourism management specialization.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">M.SC (DA)</div><div class="course-details"><p><strong>Eligibility:</strong> Graduation</p><p><strong>Duration:</strong> 2 Years</p><p><strong>About:</strong> Data analytics studies.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">M.SC (CS)</div><div class="course-details"><p><strong>Eligibility:</strong> Graduation</p><p><strong>Duration:</strong> 2 Years</p><p><strong>About:</strong> Computer science advanced program.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">M.SC (MLT)</div><div class="course-details"><p><strong>Eligibility:</strong> Graduation (Science)</p><p><strong>Duration:</strong> 2 Years</p><p><strong>About:</strong> Medical laboratory technology.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">M.SC Hospitality</div><div class="course-details"><p><strong>Eligibility:</strong> Graduation</p><p><strong>Duration:</strong> 2 Years</p><p><strong>About:</strong> Advanced hospitality studies.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">M.SC (MEDIA)</div><div class="course-details"><p><strong>Eligibility:</strong> Graduation</p><p><strong>Duration:</strong> 2 Years</p><p><strong>About:</strong> Media science specialization.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">MEVS</div><div class="course-details"><p><strong>Eligibility:</strong> Graduation</p><p><strong>Duration:</strong> 2 Years</p><p><strong>About:</strong> Environmental science studies.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">M.SC (D&N)</div><div class="course-details"><p><strong>Eligibility:</strong> Graduation</p><p><strong>Duration:</strong> 2 Years</p><p><strong>About:</strong> Dietetics & nutrition program.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">MHA</div><div class="course-details"><p><strong>Eligibility:</strong> Graduation</p><p><strong>Duration:</strong> 2 Years</p><p><strong>About:</strong> Hospital administration program.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">MSASA</div><div class="course-details"><p><strong>Eligibility:</strong> Graduation</p><p><strong>Duration:</strong> 2 Years</p><p><strong>About:</strong> Specialized advanced studies.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">MBA Regular</div><div class="course-details"><p><strong>Eligibility:</strong> Graduation</p><p><strong>Duration:</strong> 2 Years</p><p><strong>About:</strong> Full-time management program.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">MBA Blended</div><div class="course-details"><p><strong>Eligibility:</strong> Graduation</p><p><strong>Duration:</strong> 2 Years</p><p><strong>About:</strong> Hybrid mode MBA program.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">MBA Executive</div><div class="course-details"><p><strong>Eligibility:</strong> Graduation / Experience</p><p><strong>Duration:</strong> 1-2 Years</p><p><strong>About:</strong> Executive leadership program.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">MCA</div><div class="course-details"><p><strong>Eligibility:</strong> Graduation with Math</p><p><strong>Duration:</strong> 2 Years</p><p><strong>About:</strong> Advanced computer application studies.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">FPM</div><div class="course-details"><p><strong>Eligibility:</strong> Post Graduation</p><p><strong>Duration:</strong> 3-5 Years</p><p><strong>About:</strong> Fellow Programme in Management.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">PHD</div><div class="course-details"><p><strong>Eligibility:</strong> Post Graduation</p><p><strong>Duration:</strong> 3-5 Years</p><p><strong>About:</strong> Doctoral research program.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">M.PHARM</div><div class="course-details"><p><strong>Eligibility:</strong> B.Pharm</p><p><strong>Duration:</strong> 2 Years</p><p><strong>About:</strong> Master of Pharmacy program.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">LLM</div><div class="course-details"><p><strong>Eligibility:</strong> LLB</p><p><strong>Duration:</strong> 1-2 Years</p><p><strong>About:</strong> Master of Law program.</p></div></div>
+
+<div><div class="course-card" onclick="toggleDetails(this)">M.ED</div><div class="course-details"><p><strong>Eligibility:</strong> B.Ed</p><p><strong>Duration:</strong> 2 Years</p><p><strong>About:</strong> Advanced education training.</p></div></div>
+
+</div>
+</div>
+
+</section>
+
+<section id="contact">
+<h2 class="section-title">Contact Us</h2>
+<div class="contact">
+<p><strong>Address:</strong> Amtala, N. D. Road, South 24 Parganas, PIN- 743503</p>
+<p><a href="https://www.google.com/maps/search/?api=1&query=Amtala+N.D.+Road+South+24+Parganas+743503" target="_blank">View on Google Maps</a></p>
+
+<div class="map-container">
+<iframe src="https://www.google.com/maps?q=Amtala%20N.D.%20Road%20South%2024%20Parganas%20743503&output=embed"></iframe>
+</div>
+
+<br>
+<p><strong>Phone:</strong> <a href="tel:+919804181998">+91 9804181998</a></p>
+<p><strong>Email:</strong> <a href="mailto:pathandsolution@gmail.com">pathandsolution@gmail.com</a></p>
+</div>
+</section>
+
+<footer>
+<p>© 2026 Path & Solution Academy. All Rights Reserved.</p>
+</footer>
+
+<script>
+function scrollToSection(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+
+function enroll(course){
+  alert('You selected: ' + course + '\nOur team will contact you soon.');
+}
+
+function toggleMenu(){
+  document.getElementById('menu').classList.toggle('active');
+}
+
+function closeMenu(){
+  document.getElementById('menu').classList.remove('active');
+}
+function toggleDetails(element){
+  const details = element.nextElementSibling;
+  const allDetails = document.querySelectorAll('.course-details');
+
+  // Close other open details (Accordion style)
+  allDetails.forEach(d => {
+    if(d !== details){
+      d.style.display = 'none';
+    }
+  });
+
+  // Toggle current
+  if(details.style.display === 'block'){
+    details.style.display = 'none';
+  } else {
+    details.style.display = 'block';
+  }
+}
+
+function toggleMenu(){
+  document.getElementById('menu').classList.toggle('active');
+}
+
+function closeMenu(){
+  document.getElementById('menu').classList.remove('active');
+}
+
+function scrollToSection(id){
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+
+</script>
+
+</body>
+</html>
