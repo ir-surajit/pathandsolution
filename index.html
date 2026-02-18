@@ -341,7 +341,141 @@ footer{background:#111827;color:#fff;text-align:center;padding:20px;margin-top:4
 <p><strong>Email:</strong> <a href="mailto:pathandsolution@gmail.com">pathandsolution@gmail.com</a></p>
 </div>
 </section>
+  <style>
+ .chatbot-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #004aad, #007bff);
+    color: white;
+    font-size: 22px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    z-index: 9999;
+}
 
+.chatbot-box {
+    position: fixed;
+    bottom: 95px;
+    right: 20px;
+    width: 340px;
+    height: 460px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 9999;
+}
+
+.chatbot-header {
+    background: #004aad;
+    color: white;
+    padding: 14px;
+    font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+}
+
+.chatbot-body {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background: #f4f7fb;
+}
+
+.bot-message {
+    background: #e3ebff;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+.user-message {
+    background: #004aad;
+    color: white;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    text-align: right;
+    font-size: 14px;
+}
+
+.chatbot-footer {
+    display: flex;
+    border-top: 1px solid #ddd;
+}
+
+.chatbot-footer input {
+    flex: 1;
+    border: none;
+    padding: 10px;
+    outline: none;
+}
+
+.chatbot-footer button {
+    background: #004aad;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+
+.quick-buttons {
+    margin-top: 10px;
+}
+
+.quick-buttons button {
+    margin: 5px 5px 0 0;
+    padding: 6px 10px;
+    border: none;
+    background: #004aad;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+}
+  </style>
+  
+<!-- Chatbot Toggle -->
+<div class="chatbot-toggle" onclick="toggleChat()">
+    💬
+</div>
+
+<!-- Chatbot -->
+<div class="chatbot-box" id="chatbot">
+    <div class="chatbot-header">
+        Admission Support
+        <span onclick="toggleChat()">✖</span>
+    </div>
+
+    <div class="chatbot-body" id="chatBody">
+        <div class="bot-message">
+            👋 Welcome to Our Consultancy! <br>
+            Please choose an option below:
+        </div>
+
+        <div class="quick-buttons">
+            <button onclick="quickReply('admission')">Admission</button>
+            <button onclick="quickReply('courses')">Courses</button>
+            <button onclick="quickReply('fees')">Fees</button>
+            <button onclick="redirectWhatsApp()">WhatsApp</button>
+        </div>
+    </div>
+
+    <div class="chatbot-footer">
+        <input type="text" id="userInput" placeholder="Ask something...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
 <footer>
 <p>© 2026 Path & Solution Academy. All Rights Reserved.</p>
 </footer>
@@ -393,6 +527,66 @@ function scrollToSection(id){
   document.getElementById(id).scrollIntoView({behavior:'smooth'});
 }
 
+</script>
+  <script>
+function toggleChat() {
+    var chat = document.getElementById("chatbot");
+    chat.style.display = chat.style.display === "flex" ? "none" : "flex";
+}
+
+function sendMessage() {
+    var input = document.getElementById("userInput");
+    var message = input.value.toLowerCase().trim();
+    if (message === "") return;
+
+    addUserMessage(message);
+    input.value = "";
+
+    setTimeout(function () {
+        generateReply(message);
+    }, 500);
+}
+
+function addUserMessage(message) {
+    var chatBody = document.getElementById("chatBody");
+    var userDiv = document.createElement("div");
+    userDiv.className = "user-message";
+    userDiv.innerText = message;
+    chatBody.appendChild(userDiv);
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function addBotMessage(message) {
+    var chatBody = document.getElementById("chatBody");
+    var botDiv = document.createElement("div");
+    botDiv.className = "bot-message";
+    botDiv.innerHTML = message;
+    chatBody.appendChild(botDiv);
+    chatBody.scrollTop = chatBody.scrollHeight;
+}
+
+function generateReply(message) {
+    if (message.includes("admission")) {
+        addBotMessage("📌 Admission is open now. Please submit your documents online or visit our office.");
+    }
+    else if (message.includes("course")) {
+        addBotMessage("🎓 We provide B.Tech, BBA, BCA, MBA, Diploma & ITI admissions.");
+    }
+    else if (message.includes("fee")) {
+        addBotMessage("💰 Fees vary by course. Please mention the course name for exact details.");
+    }
+    else {
+        addBotMessage("Thank you for contacting us. Our counselor will respond shortly.");
+    }
+}
+
+function quickReply(type) {
+    generateReply(type);
+}
+
+function redirectWhatsApp() {
+    window.open("https://wa.me/919804181998?text=Hello%20I%20am%20contacting%20you%20from%20Path%20%26%20Solution%20Academy%20website.%20I%20want%20admission%20details.", "_blank");
+}
 </script>
 
 </body>
